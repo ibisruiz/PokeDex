@@ -1,0 +1,55 @@
+﻿@model List<PokeDex.Core.Application.ViewModels.Tipo.TipoViewModel>
+@{
+    ViewData["Title"] = "Mantenimiento de Tipos";
+}
+
+<div class="container-fluid mt-5">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a asp-controller="Tipo" asp-action="Create" class="btn btn-outline-success" type="button">Crear nuevo tipo</a>
+    </div>
+
+
+    <div class="row">
+
+        @if (Model.Count == 0 || Model == null)
+        {
+            <h1> No hay registros para mostrar!!</h1>
+        }
+        else
+        {
+            <div class="m- d-flex justify-content-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tipos</th>
+                            <th scope="col">Pokemones con este tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (PokeDex.Core.Application.ViewModels.Tipo.TipoViewModel item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>@item.Name</td>
+                                <td> @item.PokemonQuantity </td>
+                                <td>
+                                    <div class="btn-group float-end">
+                                        <a type="button" class="btn btn-sm btn-outline-primary" asp-controller="Tipo" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                        <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Tipo" asp-action="DeleteTipo" asp-route-id="@item.Id">Eliminar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        }
+
+    </div>
+
+</div>

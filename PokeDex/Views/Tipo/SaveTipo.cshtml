@@ -1,0 +1,42 @@
+﻿@model PokeDex.Core.Application.ViewModels.Tipo.SaveTipoViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = (editMode ? $"Editando Tipo" : "Creando nuevo tipo");
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>@(editMode ? $"Editando Tipo: {Model.Name}" : "Creando nuevo Tipo")</h4>
+                    </div>
+                <div class="card-body">
+
+                    <form method="post" asp-controller="Tipo" asp-action="@(editMode ? "Edit":"Create")">
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Name">Nombre del tipo: </label>
+                            <input class="form-control" type="text" asp-for="Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="Tipo" asp-action="Index" class="btn btn-warning">Cancelar</a>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,79 @@
+﻿@using PokeDex.Core.Application.ViewModels.Pokemon
+@using PokeDex.Core.Application.ViewModels.Region
+@model List<PokemonViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid mt-5">
+
+    <div class="row position-absolute start-0">
+     
+        <div class="">
+
+            <div class="card" style="width: 12rem;">
+                <div class="card-body">
+                    <h3 class="card-title"> Regiones</h3>
+
+                    <form method="post" asp-controller="Home" asp-action="Index">
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" value="null" type="radio" name="FilterRegionId" id="category-all" />
+                                 <label class="form-check-label" for="category-all">Todas</label>
+                            </div>
+                        </div>
+
+                        @foreach(RegionViewModel item in ViewBag.regions)
+                    {
+                         <div class="mb-3">
+                             <div class="form-check">
+                                    <input class="form-check-input" value="@item.Id" type="radio" name="FilterRegionId" id="category-@item.Id" />
+                                    <label class="form-check-label" for="category-@item.Id">@item.Name</label>
+                             </div>
+                         </div>
+                    }
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+                        </div>
+                        
+
+
+                    </form> 
+
+                    
+                </div>
+            </div>
+
+        </div>    
+
+    </div>
+  
+</div>
+
+
+<div class="container-fluid mt-5 ms-5">
+
+    <div class="row ms-5"> 
+
+            @if (Model.Count == 0 || Model == null)
+            {
+                <h1> No hay Pokemones para mostrar!!</h1>
+            }
+            else
+            {
+                @foreach (PokemonViewModel item in Model)
+                {
+                    <div class="col-lg-4">
+
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="@item.ImageUrl" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false" />
+                        <h2 class="fw-normal"> @item.Nombre </h2>
+                        <p> Region: @item.RegionName</p>
+                        <p> Tipo: @item.TipoNombre</p>
+                    </div>
+                }
+            }
+
+    </div>
+
+</div>
