@@ -1,0 +1,60 @@
+﻿@model List<PokeDex.Core.Application.ViewModels.Region.RegionViewModel>
+@{
+    ViewData["Title"] = "Mantenimiento de Regiones";
+}
+
+<div class="container-fluid mt-5">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a asp-controller="Region" asp-action="Create" class="btn btn-outline-success" type="button">Agregar Region</a>
+    </div>
+
+
+    <div class="row">
+
+        @if (Model.Count == 0 || Model == null)
+        {
+            <h1> No hay Regiones para mostrar!!</h1>
+        }
+        else
+        {
+            <div class="m- d-flex justify-content-center">
+                <table class="table">
+                    <thead>
+                        <tr>                            
+                            <th scope="col">#</th>
+                            <th></th>
+                            <th scope="col">Nombre de la region</th>
+                            <th></th>
+                            <th scope="col">Pokemones en esta region</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (PokeDex.Core.Application.ViewModels.Region.RegionViewModel item in Model)
+                        {
+                            <tr>                                
+                                <th scope="row">@item.Id</th>
+                                <td></td>
+                                <td>@item.Name </td>
+                                <td></td>
+                                <td> @item.PokemonQuantity </td>
+                                <td></td>
+                                <td>
+                                    <div class="btn-group float-end">
+                                        <a asp-controller="Region" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-primary">Editar</a>
+                                        <a asp-controller="Region" asp-action="DeleteRegion" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        }
+
+    </div>
+
+</div>

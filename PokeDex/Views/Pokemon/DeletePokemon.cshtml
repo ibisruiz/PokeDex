@@ -1,0 +1,38 @@
+﻿@model PokeDex.Core.Application.ViewModels.Pokemon.SavePokemonViewModel
+@{
+    ViewData["Title"] = "Eliminar Pokemon";
+}
+
+<div class="container"> 
+
+    <div class="row">
+    
+        
+         
+        <div class="m-4 d-flex justify-content-center">
+
+
+            <div class="col-lg-2">
+                <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="@Model.ImageUrl" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false" />
+                <h2 class="fw-normal">@Model.Nombre</h2>
+                <p>Region</p>
+                <p>Tipos</p>
+                <p class="text-danger fw-bolder">Seguro que desea eliminar este Pokemon?</p>
+                <form method="post" asp-controller="Pokemon" asp-action="DeletePost">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        <a asp-controller="Pokemon" asp-action="Index" class="btn btn-sm btn-warning">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+
+</div>
+
+</div> 
+
+
